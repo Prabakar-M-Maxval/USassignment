@@ -55,8 +55,8 @@ class ScrapeAssignmentDetailsY extends PageObject {
 
     public void getAssignmentDetails() throws FileNotFoundException, IOException, InterruptedException {
         FileInputStream file = new FileInputStream(new File(
-                "D:\\assignmentsearchdatasheet.xlsx"));
-        String excelFileName = "D:\\AssignmentdetailsOutput1.xlsx";//name of excel file
+                "D:\\jenkins_usassignment\\assignmentsearchdatasheet.xlsx"));
+        String excelFileName = "D:\\jenkins_usassignment\\AssignmentdetailsOutput1.xlsx";//name of excel file
         String sheetName = "AssignOutput";//name of sheetWrite
         XSSFWorkbook workbookWrite = new XSSFWorkbook();
         XSSFSheet sheetWrite = workbookWrite.createSheet(sheetName);
