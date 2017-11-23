@@ -55,9 +55,9 @@ class ScrapeAssignmentDetailsY extends PageObject {
 
     public void getAssignmentDetails() throws FileNotFoundException, IOException, InterruptedException {
         FileInputStream file = new FileInputStream(new File(
-                "D:\\jenkins_usassignment\\assignmentsearchdatasheet.xlsx"));
-        String excelFileName = "D:\\jenkins_usassignment\\AssignmentdetailsOutput1.xlsx";//name of excel file
-        String sheetName = "AssignOutput";//name of sheetWrite
+                "D:\\jenkins_usassignment\\USAssignmentsearchdatasheet.xlsx"));
+        String excelFileName = "D:\\jenkins_usassignment\\USAssignmentoutput.xlsx";//name of excel file
+        String sheetName = "USAssignmentDetails";//name of sheetWrite
         XSSFWorkbook workbookWrite = new XSSFWorkbook();
         XSSFSheet sheetWrite = workbookWrite.createSheet(sheetName);
         XSSFWorkbook workbook = new XSSFWorkbook(file);
@@ -87,8 +87,7 @@ class ScrapeAssignmentDetailsY extends PageObject {
                 selectLookupItem(lookupItem);
                 enterSearchNumberAndSubmit(inputNumber);
                 System.out.println("***** In progress"+ "\n" +"Look up Item " + lookupItem + "--" + inputNumber );
-                Thread.sleep(1000);
-//               
+                Thread.sleep(2000);//               
                 boolean resultSet = checkResultAvailableOrNot();
                 if (resultSet) {
                     WebElement df = assignmentOutputArea;
@@ -139,10 +138,10 @@ class ScrapeAssignmentDetailsY extends PageObject {
                     }
                     driver.findElement(By.linkText("Back to search results")).click();
                 } else {
-                    System.out.println("Assignment Details not available for given pat/pub no");
+                    System.out.println("Assignment Details not available.");
                     rowWrite = sheetWrite.createRow(rowsraninexcel);
                     rowWrite.createCell(0).setCellValue(inputNumber);
-                    rowWrite.createCell(1).setCellValue("Assignment Details not available");
+                    rowWrite.createCell(1).setCellValue("Assignment Details not available.");
                     driver.findElement(By.xpath("//a[@href='/patent']"));
                     rowsraninexcel = rowsraninexcel + 1;
                 }
