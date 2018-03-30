@@ -45,6 +45,7 @@ public class DriverSetup {
                     // For Firefox Driver
                     sfDriver = new FirefoxDriver();
                     break;
+                    
 
                 case 2:
                     // For Chrome Driver

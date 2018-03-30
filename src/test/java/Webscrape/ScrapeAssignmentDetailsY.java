@@ -84,6 +84,7 @@ class ScrapeAssignmentDetailsY extends PageObject {
                 DataFormatter formatter = new DataFormatter();
                 cell = row.getCell(columnNumber + 1, Row.RETURN_BLANK_AS_NULL);
                 String inputNumber = formatter.formatCellValue(cell);
+                Thread.sleep(1000);
                 selectLookupItem(lookupItem);
                 enterSearchNumberAndSubmit(inputNumber);
                 System.out.println("***** In progress"+ "\n" +"Look up Item " + lookupItem + "--" + inputNumber );
