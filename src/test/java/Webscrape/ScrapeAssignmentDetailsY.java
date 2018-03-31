@@ -170,7 +170,7 @@ class ScrapeAssignmentDetailsY extends PageObject {
     }
 
     public Boolean checkResultAvailableOrNot() {
-        driver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
         boolean checkresultGrid;
         try {
             resultTable.isDisplayed();
