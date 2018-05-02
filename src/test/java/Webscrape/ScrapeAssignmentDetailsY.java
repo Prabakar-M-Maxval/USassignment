@@ -68,8 +68,9 @@ class ScrapeAssignmentDetailsY extends PageObject {
         int rowStart = Math.min(15, sheet.getFirstRowNum());
         int rowEnd = Math.max(1400, sheet.getLastRowNum());
         int rowsraninexcel = 1;
+        int totalRowCount = sheet.getPhysicalNumberOfRows()-1;
+                
         for (int rowNum = rowStart + 1; rowNum < rowEnd; rowNum++) {
-
             row = sheet.getRow(rowNum);
             if (row == null) {
                 continue;
@@ -95,12 +96,11 @@ class ScrapeAssignmentDetailsY extends PageObject {
                     List<WebElement> noOfAssignments = df.findElements(By.tagName("table"));
                     int totalGrid = noOfAssignments.size();
                     int totalNumberOfAssignments = totalGrid - 1;
-                    System.out.println("total number of assignment " + totalNumberOfAssignments);
+                    System.out.println("total number of assignment " + totalNumberOfAssignments);                    
 
                     for (int r = 1; r <= totalNumberOfAssignments; r++) {
                         //System.out.println("rowsraninexcel " + rowsraninexcel);
                         rowWrite = sheetWrite.createRow(rowsraninexcel);
-
                         String assignee = driver.findElement(By.xpath(" //*[@id='printable-area']/table[" + r + "]/tbody/tr[4]/td/a")).getText();
                         System.out.println("Assignee: "+assignee);
                         String assignors = driver.findElement(By.xpath("//*[@id='printable-area']/table[" + r + "]/tbody/tr[3]/td[1]/a")).getText();
@@ -144,11 +144,11 @@ class ScrapeAssignmentDetailsY extends PageObject {
                     rowWrite.createCell(0).setCellValue(inputNumber);
                     rowWrite.createCell(1).setCellValue("Assignment Details not available.");
                     driver.findElement(By.xpath("//a[@href='/patent']"));
-                    rowsraninexcel = rowsraninexcel + 1;
+                    rowsraninexcel = rowsraninexcel + 1;                    
                 }
                 System.out.println("Assignments fetching completed  "+inputNumber);
+                System.out.println("Completed   "+ row.getRowNum() +"out of"  + totalRowCount);                
             }
-
             rowWrite = sheetWrite.createRow(0);
             rowWrite.createCell(0).setCellValue("Pat/Pub No");
             rowWrite.createCell(1).setCellValue("Assignee");
