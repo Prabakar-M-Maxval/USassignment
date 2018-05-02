@@ -186,7 +186,6 @@ class ScrapeAssignmentDetailsY extends PageObject {
     public void selectLookupItem(String Item) throws InterruptedException {
         Thread.sleep(2000);
         lookupButton.click();
-
         WebElement uList = driver.findElement(By.xpath("//*[@id='quick-search-dropdown']/ul"));
         List<WebElement> listCount = uList.findElements(By.tagName("li"));
         for (int i = 1; i <= listCount.size(); i++) {
