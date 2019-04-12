@@ -86,7 +86,8 @@ class ScrapeAssignmentDetailsY extends PageObject {
                 cell = row.getCell(columnNumber + 1, Row.RETURN_BLANK_AS_NULL);
                 String inputNumber = formatter.formatCellValue(cell);
                 Thread.sleep(1000);
-                selectLookupItem(lookupItem);
+                selectLookupItem(lookupItem.trim());
+                Thread.sleep(2000);
                 enterSearchNumberAndSubmit(inputNumber);
                 System.out.println("***** In progress"+ "\n" +"Look up Item " + lookupItem + "--" + inputNumber );
                 Thread.sleep(2000);//               
@@ -186,14 +187,21 @@ class ScrapeAssignmentDetailsY extends PageObject {
     public void selectLookupItem(String Item) throws InterruptedException {
         Thread.sleep(2000);
         lookupButton.click();
+         Thread.sleep(2000);
+//        WebElement lookupItem = driver.findElement(By.xpath("//span[contains(.,'"+Item+"')]"));
+//         lookupItem.click();
+//         Thread.sleep(2000);
         WebElement uList = driver.findElement(By.xpath("//*[@id='quick-search-dropdown']/ul"));
         List<WebElement> listCount = uList.findElements(By.tagName("li"));
         for (int i = 1; i <= listCount.size(); i++) {
             WebElement lookupItem = driver.findElement(By.xpath("(//li[@id='quickOption']/a/div/span[1])[" + i + "]"));
             String lookupItemValue = lookupItem.getText();
-            if (lookupItemValue.equalsIgnoreCase(Item)) {
-                lookupItem.click();
-            }
+            System.out.println("inside"+lookupItemValue);
+            if (lookupItemValue.equalsIgnoreCase(Item.trim())) {
+                lookupItem.click();   
+                Thread.sleep(2000);
+                break;
+            }           
         }
     }
 
